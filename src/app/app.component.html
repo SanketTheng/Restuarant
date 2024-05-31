@@ -1,0 +1,41 @@
+<div class="row header">
+  <span class="back-header">
+    <img src="../assets/images/logo.png" class="h-5"/>
+    <!-- <p class="logo-text">PARADISE</p> -->
+  </span>
+</div>
+<div class="row header-mr"></div>
+<div class="row h-100">
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" [(opened)]="openSidenav">
+      <nav class="nav-bar">
+        <button class="btn item-block" (click)="openSidePage('home')">Home</button>
+        <button class="btn item-block"  (click)="openSidePage('coffee')">Coffee</button>
+        <button class="btn item-block"  (click)="openSidePage('lunch-dinner')">Lunch / Dinner</button>
+        <button class="btn item-block"  (click)="openSidePage('cart')">Cart</button>
+        <button class="btn item-block"  (click)="openSidePage('myorders')">My-Orders&nbsp;@if(myOrdersList!=0){{{myOrdersList.length}}}</button>
+        <img
+        muted
+        loop
+        preload="auto"
+        autoPlay
+        playsInline
+        class="shef"
+        src="../assets/images/shef.gif"
+     />
+      </nav>
+    </mat-sidenav>
+    <mat-sidenav-content class="rm-sc">
+      <img src="../assets/toprestuarant/menu.png" (click)="mainClick()" [ngClass]="{'normal': openSidenav===false,'rotated': openSidenav===true}"/>&nbsp;&nbsp;&nbsp;
+      <span matBadge={{numberItem}} matBadgeColor="warn" matBadgeOverlap="true" class="demo-section"><img (click)="openCart()" src="../assets/images/cart.png"  class="normal"/></span>
+      <!-- <button >@if(numberItem!=0){<span>{{numberItem }}</span>}Cart</button> -->
+     @switch(pageOpned){
+      @case('home'){<div><app-home (cartItem)="cartItem($event)" ></app-home></div>}
+      @case('coffee'){<div><app-coffee></app-coffee></div>}
+      @case('lunch-dinner'){<div><app-lunch-dinner></app-lunch-dinner></div>}
+      @case('cart'){<div><app-cart [cartItems]="numberItemList" (redirectHome)="redirectHome()" (myOrders)="myOrders($event)"></app-cart></div>}
+      @case('myorders'){<div><app-my-orders [myOrdersList]="myOrdersList"></app-my-orders></div>}
+     }
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,18 @@
+<div class="row order-card pt-5 pl-5">
+    @for(myorder of myOrdersList;track myorder){
+    <mat-card layout="row" layout-align="center center" class="remove-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image">{{myorder.rating}}</div>
+          <mat-card-title>{{myorder.restuarantName}}</mat-card-title>
+          <!-- <mat-card-subtitle>{{topRestuarant.rating}}</mat-card-subtitle> -->
+        </mat-card-header>
+        <mat-card-content>
+            <button mat-button color="accent">&nbsp;{{myorder.newPrice}}&nbsp;RS</button>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="warn">Cancel Order</button>
+        </mat-card-actions>
+      </mat-card>
+      <br>
+    }
+</div>
